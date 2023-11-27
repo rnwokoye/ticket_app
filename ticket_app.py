@@ -25,13 +25,14 @@ def check_password():
         ):
             st.session_state["password_correct"] = True
             del st.session_state["password"]  # Don't store the username or password.
-            del st.session_state["username"]
+            # del st.session_state["username"]
         else:
             st.session_state["password_correct"] = False
 
     # Return True if the username + password is validated.
     if st.session_state.get("password_correct", False):
-        return True
+        # return True
+        return st.session_state["username"]
 
     # Show inputs for username + password.
     login_form()
@@ -85,6 +86,8 @@ def select_offence():
 # Enter Form Details
 def create_offense():
     offense, fine = select_offence()
+    user_name = check_password()
+    st.subheader(user_name)
     # Start a form
     with st.form(key="offense_form", clear_on_submit=True):
         # Create 2 columns
