@@ -88,7 +88,7 @@ def select_offence():
 # Enter Form Details
 def create_offense():
     offense, fine = select_offence()
-    user_name = check_password()
+    user_name = check_password()[1]
     st.subheader(f"Welcome {user_name}")
     # Start a form
     with st.form(key="offense_form", clear_on_submit=True):
