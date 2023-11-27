@@ -17,7 +17,6 @@ def check_password():
 
     def password_entered():
         """Checks whether a password entered by the user is correct."""
-        st.subheader(f"Before state: {st.session_state}")
         if st.session_state["username"] in st.secrets[
             "passwords"
         ] and hmac.compare_digest(
@@ -25,9 +24,7 @@ def check_password():
             st.secrets.passwords[st.session_state["username"]],
         ):
             st.session_state["password_correct"] = True
-            # Added  5.23
-            st.write(f"End State After: {st.session_state}")
-            # st.session_state["autenticated_user"] = st.session_state["username"]
+            st.write(f"Welcome {st.session_state.username}")
             del st.session_state["password"]  # Don't store the username or password.
             # del st.session_state["username"]
         else:
@@ -38,7 +35,6 @@ def check_password():
     # Return True if the username + password is validated.
     if st.session_state.get("password_correct", False):
         return True
-        # return st.session_state["username"]
 
     # Show inputs for username + password.
     login_form()
@@ -53,9 +49,11 @@ if not check_password():
 else:
     authenticated_user = st.session_state.get("authenticated_user")
     st.write(f"2. Welcome, {authenticated_user}")
+
 # Main Streamlit app starts here now also
 # st.subheader(f"Welcome {user_nme}")
-st.button("Click me")
+st.button("log_out")
+st.write(f"Log out state: {st.session_state}")
 
 
 # Ticket Variables
