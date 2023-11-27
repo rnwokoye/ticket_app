@@ -13,7 +13,7 @@ def check_password():
             user_nme = st.text_input("Username", key="username")
             pass_wrd = st.text_input("Password", type="password", key="password")
             st.form_submit_button("Log in", on_click=password_entered)
-            return True, user_nme
+            return user_nme
 
     def password_entered():
         """Checks whether a password entered by the user is correct."""
@@ -87,7 +87,7 @@ def select_offence():
 def create_offense():
     offense, fine = select_offence()
     user_name = check_password()
-    st.subheader(user_name)
+    st.subheader(f"Welcome {user_name}")
     # Start a form
     with st.form(key="offense_form", clear_on_submit=True):
         # Create 2 columns
