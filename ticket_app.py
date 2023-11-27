@@ -25,7 +25,7 @@ def check_password():
         ):
             st.session_state["password_correct"] = True
             # Added  5.23
-            st.session_sate["autenticated_user"] = st.session_state["username"]
+            st.session_state["autenticated_user"] = st.session_state["username"]
             del st.session_state["password"]  # Don't store the username or password.
             # del st.session_state["username"]
         else:
@@ -35,7 +35,6 @@ def check_password():
 
     # Return True if the username + password is validated.
     if st.session_state.get("password_correct", False):
-        st.write(f'2. session name is {st.session_state["username"]}')
         return True
         # return st.session_state["username"]
 
