@@ -13,8 +13,7 @@ def check_password():
             user_name = st.text_input("Username", key="username")
             st.text_input("Password", type="password", key="password")
             st.form_submit_button("Log in", on_click=password_entered)
-            st.write(f"1. Username is {user_name}")
-            return True, user_name
+            return True
 
     def password_entered():
         """Checks whether a password entered by the user is correct."""
@@ -25,10 +24,14 @@ def check_password():
             st.secrets.passwords[st.session_state["username"]],
         ):
             st.session_state["password_correct"] = True
+            # Added  5.23
+            st.session_sate["autenticated_user"] = st.session_state["username"]
             del st.session_state["password"]  # Don't store the username or password.
-            del st.session_state["username"]
+            # del st.session_state["username"]
         else:
             st.session_state["password_correct"] = False
+            if "authenticated_user" in st.session_state:
+                del st.session_state["authenticated_user"]
 
     # Return True if the username + password is validated.
     if st.session_state.get("password_correct", False):
@@ -46,6 +49,9 @@ def check_password():
 if not check_password():
     st.stop()
 
+else:
+    authenticated_user = st.session_state.get("authenticated_user", "User")
+    st.write(f"2. Welcome, {authenticated_user}")
 # Main Streamlit app starts here now also
 # st.subheader(f"Welcome {user_nme}")
 st.button("Click me")
@@ -88,7 +94,7 @@ def select_offence():
 # Enter Form Details
 def create_offense():
     offense, fine = select_offence()
-    user_name = check_password()[1]
+    user_name = check_password()
     st.subheader(f"Welcome {user_name}")
     # Start a form
     with st.form(key="offense_form", clear_on_submit=True):
