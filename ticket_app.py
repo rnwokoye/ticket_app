@@ -10,10 +10,10 @@ def check_password():
     def login_form():
         """Form with widgets to collect user information"""
         with st.form("Credentials"):
-            user_nme = st.text_input("Username", key="username")
-            pass_wrd = st.text_input("Password", type="password", key="password")
+            st.text_input("Username", key="username")
+            st.text_input("Password", type="password", key="password")
             st.form_submit_button("Log in", on_click=password_entered)
-            return True, user_nme
+            return True
 
     def password_entered():
         """Checks whether a password entered by the user is correct."""
@@ -25,14 +25,14 @@ def check_password():
         ):
             st.session_state["password_correct"] = True
             del st.session_state["password"]  # Don't store the username or password.
-            # del st.session_state["username"]
+            del st.session_state["username"]
         else:
             st.session_state["password_correct"] = False
 
     # Return True if the username + password is validated.
     if st.session_state.get("password_correct", False):
-        # return True
-        return st.session_state["username"]
+        return True
+        # return st.session_state["username"]
 
     # Show inputs for username + password.
     login_form()
