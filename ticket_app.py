@@ -10,13 +10,14 @@ def check_password():
     def login_form():
         """Form with widgets to collect user information"""
         with st.form("Credentials"):
-            user_name = st.text_input("Username", key="username")
+            st.text_input("Username", key="username")
             st.text_input("Password", type="password", key="password")
             st.form_submit_button("Log in", on_click=password_entered)
             return True
 
     def password_entered():
         """Checks whether a password entered by the user is correct."""
+        st.subheader(f"Before state: {st.session_state}")
         if st.session_state["username"] in st.secrets[
             "passwords"
         ] and hmac.compare_digest(
@@ -25,8 +26,8 @@ def check_password():
         ):
             st.session_state["password_correct"] = True
             # Added  5.23
-            st.write(f"XXXX st.session_state {st.session_state.username}")
-            st.session_state["autenticated_user"] = st.session_state["username"]
+            st.write(f"End State After: {st.session_state}")
+            # st.session_state["autenticated_user"] = st.session_state["username"]
             del st.session_state["password"]  # Don't store the username or password.
             # del st.session_state["username"]
         else:
