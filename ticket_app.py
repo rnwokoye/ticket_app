@@ -49,7 +49,7 @@ if not check_password():
     st.stop()
 
 else:
-    authenticated_user = st.session_state.get("authenticated_user", "User")
+    authenticated_user = st.session_state.get("authenticated_user")
     st.write(f"2. Welcome, {authenticated_user}")
 # Main Streamlit app starts here now also
 # st.subheader(f"Welcome {user_nme}")
@@ -93,8 +93,6 @@ def select_offence():
 # Enter Form Details
 def create_offense():
     offense, fine = select_offence()
-    user_name = check_password()
-    st.subheader(f"Welcome {user_name}")
     # Start a form
     with st.form(key="offense_form", clear_on_submit=True):
         # Create 2 columns
