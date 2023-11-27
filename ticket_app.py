@@ -13,7 +13,7 @@ def check_password():
             user_nme = st.text_input("Username", key="username")
             pass_wrd = st.text_input("Password", type="password", key="password")
             st.form_submit_button("Log in", on_click=password_entered)
-            st.subheader(f"Welcome {user_nme}")
+            return user_nme
 
     def password_entered():
         """Checks whether a password entered by the user is correct."""
