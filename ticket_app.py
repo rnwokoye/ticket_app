@@ -109,7 +109,7 @@ def create_offense():
             plate_number = st.text_input("Plate Number")
 
         due_date = offense_date + timedelta(days=3)
-        st.date_input("Pay By Due Date", value=due_date)
+        st.date_input("Pay By Due Date", value=due_date, format="MM/DD/YYYY")
         location = st.text_input("Location")
         offense_description = st.text_area("Ticket Details")
 
