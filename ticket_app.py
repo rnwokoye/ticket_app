@@ -54,7 +54,7 @@ if logout:
         del st.session_state[key]
 
 
-# Ticket Variables
+# Ticket Variables changed?
 offense_fines = {
     "Choose An Option": "",
     "Speeding": 100,
