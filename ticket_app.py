@@ -99,12 +99,15 @@ def create_offense():
         # Use a select box for the offense
         with col1:
             first_name = st.text_input("First Name")
-            offense_date = st.date_input("Date of Offense", value="today")
+            offense_date = st.date_input(
+                "Date of Offense", value="today", format="MM/DD/YYYY"
+            )
 
         with col2:
             last_name = st.text_input("Last Name")
             plate_number = st.text_input("Plate Number")
 
+        due_date = st.date_input("Pay By Due Date", value=offense_date.day + 30)
         location = st.text_input("Location")
         offense_description = st.text_area("Ticket Details")
 
