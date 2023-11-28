@@ -121,9 +121,6 @@ from streamlit_login_auth_ui.widgets import __login__
 #     create_offense()
 
 
-import streamlit as st
-from streamlit_login_auth_ui.widgets import __login__
-
 __login__obj = __login__(
     auth_token="courier_auth_token",
     company_name="Shims",
