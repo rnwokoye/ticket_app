@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import hmac
+from datetime import datetime, timedelta
 
 
 def check_password():
@@ -107,7 +108,8 @@ def create_offense():
             last_name = st.text_input("Last Name")
             plate_number = st.text_input("Plate Number")
 
-        due_date = st.date_input("Pay By Due Date", value=offense_date.day + 30)
+        due_date = offense_date + timedelta(days=3)
+        st.date_input("Pay By Due Date", value=due_date)
         location = st.text_input("Location")
         offense_description = st.text_area("Ticket Details")
 
