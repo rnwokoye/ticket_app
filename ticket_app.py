@@ -24,7 +24,8 @@ def check_password():
             st.secrets.passwords[st.session_state["username"]],
         ):
             st.session_state["password_correct"] = True
-            st.header(f"Welcome {st.session_state.username}")
+            authenticated_user = st.session_state.username
+            st.header(f"Welcome {authenticated_user}")
             del st.session_state["password"]  # Don't store the username or password.
             # del st.session_state["username"]
         else:
@@ -46,18 +47,11 @@ def check_password():
 if not check_password():
     st.stop()
 
-else:
-    authenticated_user = st.session_state.get("authenticated_user")
-    st.write(f"2. Welcome, {authenticated_user}")
-
 # Main Streamlit app starts here now also
-
 logout = st.button("log_out")
 if logout:
     for key in st.session_state.keys():
         del st.session_state[key]
-
-st.write(f"Log out state: {st.session_state}")
 
 
 # Ticket Variables
