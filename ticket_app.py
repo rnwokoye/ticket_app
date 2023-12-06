@@ -274,3 +274,7 @@ def create_offense() -> pd.DataFrame:
         df = pd.DataFrame(tkt_attributes, index=[0])
         st.write("Ticket Submitted")
         return df
+
+
+if __name__ == "__main__":
+    create_offense()
